@@ -1,0 +1,11 @@
+{
+  "name": "tetris-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "host": "light-server -s ./pages/ -p 8080",
+    "host:watch": "npm run host -- -w '**/*.js, **/*.html, **/*.css # #'"
+  },
+  "dependencies": {
+    "light-server": "^2.9.1"
+  }
+}
