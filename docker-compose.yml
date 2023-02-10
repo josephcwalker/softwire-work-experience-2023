@@ -1,0 +1,25 @@
+version: "2"
+services:
+  frontend:
+    build: ./frontend/
+    volumes:
+      - ./frontend/:/usr/app
+      - /usr/app/node_modules/
+    ports:
+      - 8080:8080
+  backend:
+    build: ./backend/
+    volumes:
+      - ./backend/:/usr/app
+      - /usr/app/node_modules/
+    ports:
+      - 3000:3000
+  database:
+    image: postgres
+    volumes:
+      - database:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+volumes:
+  database:

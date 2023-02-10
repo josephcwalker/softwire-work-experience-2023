@@ -1,0 +1,13 @@
+# This file contains development overrides for docker containers
+
+version: "2"
+services:
+  frontend:
+    command: npm run host:watch
+  backend:
+    # TODO: Find way to hot reload backend changes (Carly's group used nodemon)
+    # command: npm run watch
+  database:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: g1raffe
