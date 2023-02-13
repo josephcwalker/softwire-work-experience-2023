@@ -5,9 +5,9 @@ services:
   frontend:
     command: npm run host:watch
   backend:
-    # TODO: Find way to hot reload backend changes (Carly's group used nodemon)
-    # command: npm run watch
+    command: npm run start:watch
   database:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: g1raffe
+      POSTGRES_DB: default_database
