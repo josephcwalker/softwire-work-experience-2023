@@ -127,7 +127,15 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Possible colours: "cyan, blue, orange, yellow, green, purple, red"
 		 */
 		getTileAtPosition: function(x, y) {
-
+			if (x > 9 && x < 0 && y < 0 && y > 19){
+				if (this.gameState.playfield[x][y] === null){
+					return ('No tile')
+				} else {
+					return(this.gameState.playfield[x][y])
+				}
+			} else{
+				alert('Invalid coordinate')
+			}
 		},
 
 		/**
