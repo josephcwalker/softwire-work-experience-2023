@@ -135,7 +135,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * @return {int}
 		 */
 		getScore: function() {
-
+			return this.gameState.score
 		},
 
 		/**
@@ -177,14 +177,37 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Move the current tetromino left 1 tile
 		 */
 		moveLeft: function() {
-		x = x - 1
+		if (this.gameState.activeTetromino.name === 'I Piece' && this.gameState.activeTetromino.position.x > 9){
+			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+			
+		} else if (this.gameState.activeTetromino.name === 'J Piece' && this.gameState.activeTetromino.position.x > 9){
+			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+
+		} else if (this.gameState.activeTetromino.name === 'L Piece' && this.gameState.activeTetromino.position.x > 9){
+			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+
+		} else if (this.gameState.activeTetromino.name === 'O Piece' && this.gameState.activeTetromino.position.x > 9){
+			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+			
+		} else if (this.gameState.activeTetromino.name === 'S Piece' && this.gameState.activeTetromino.position.x > 9){
+			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+			
+		} else if (this.gameState.activeTetromino.name === 'Z Piece' && this.gameState.activeTetromino.position.x > 9){
+			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+			
+		} else if (this.gameState.activeTetromino.name === 'T Piece' && this.gameState.activeTetromino.position.x > 9){
+			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+			
+		} else{
+			alert('Something has gone wrong')
+		}
 		},
 
 		/**
 		 * Move the current tetromino right 1 tile
 		 */
 		moveRight: function() {
-		x = x + 1
+			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
 		},
 
 		/**
@@ -212,7 +235,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Hold the current tetromino, swapping it for any currently held one
 		 */
 		holdCurrentTetromino: function() {
-
+			
 		},
 	};
 
