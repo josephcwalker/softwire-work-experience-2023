@@ -161,7 +161,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * @return {null | Tetromino}
 		 */
 		getHeldTetromino: function() {
-
+			return this.gameState.heldTetromino
 		},
 
 		/**
