@@ -145,7 +145,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Which stats to keep track of can be determined later
 		 */
 		getStats: function() {
-
+			
 		},
 
 		/**
@@ -153,7 +153,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * @return {Array<Tetromino>}
 		 */
 		getUpcomingTetrominoes: function() {
-
+			return this.gameState.upcomingTetrominoes
 		},
 
 		/**
@@ -235,7 +235,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Hold the current tetromino, swapping it for any currently held one
 		 */
 		holdCurrentTetromino: function() {
-			
+
 		},
 	};
 
