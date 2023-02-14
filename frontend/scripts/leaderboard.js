@@ -1,11 +1,12 @@
 function load(){
     var userscores = {
-      "ex1": 10,
+      "Player 1": 10,
       "noncy": 40,
       "del3tus": 24,
       "the_r0ck": 8,
       "MONSTER_OSITY": 120
     };
+    alert("hola")
     var max = 0;
     var sorted = [];
     for(var prop in userscores){
