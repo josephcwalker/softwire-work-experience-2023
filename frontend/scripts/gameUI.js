@@ -1,13 +1,14 @@
 // Box width
-var bw = 35;
+var bw = 350;
 // Box height
-var bh = 35;
+var bh = 700;
 // Padding
 var p = 10;
 
 var canvas = document.getElementById("Grid");
 var context = canvas.getContext("2d");
 function drawBoard(){
+    alert("running?")
     for (var x = 0; x <= bw; x += 40) {
         context.moveTo(0.5 + x + p, p);
         context.lineTo(0.5 + x + p, bh + p);
@@ -21,4 +22,3 @@ function drawBoard(){
     context.stroke();
 }
 
-drawBoard();
