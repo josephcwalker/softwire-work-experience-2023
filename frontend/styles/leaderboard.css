@@ -1,0 +1,40 @@
+/* border */
+table, th, td {
+    border: 1px solid;
+  }
+ 
+/* this is for the hola amigos */
+p {
+    text-align: center;
+    color: red;
+  }
+
+  h1 {
+    text-align: center;
+  }
+/* table size*/
+table {
+    width: 100%;
+  }
+th {
+    height: 70px;
+  }
+
+th {
+    text-align: center;
+  }
+
+td {
+    text-align: left;
+  }
+
+
+tr:hover {background-color: #04AA6D;}
+
+  
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+th {
+    background-color: #04AA6D;
+    color: white;
+  }
