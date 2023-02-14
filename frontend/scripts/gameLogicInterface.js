@@ -235,7 +235,15 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Hold the current tetromino, swapping it for any currently held one
 		 */
 		holdCurrentTetromino: function() {
+			let tempHeldTetromino = this.gameState.heldTetromino
+			if (this.gameState.heldTetromino === "null"){
+				this.gameState.heldTetromino = this.gameState.activeTetromino
 
+			} else {
+				this.gameState.tempHeldTetromino = this.gameState.heldTetromino
+				this.gameState.heldTetromino = this.gameState.activeTetromino
+				this.gameState.activeTetromino = this.gameState.tempHeldTetromino
+			} 
 		},
 	};
 
