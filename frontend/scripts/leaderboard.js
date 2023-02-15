@@ -20,6 +20,34 @@ async function getUsers() {
         {
             "name": "player 4",
             "score": 100
+        },
+        {
+            "name": "player 5",
+            "score": 120
+        },
+        {
+            "name": "player 6",
+            "score": 90
+        },
+        {
+            "name": "player 7",
+            "score": 2
+        },
+        {
+            "name": "player 8",
+            "score": 1
+        },
+        {
+            "name": "player 9",
+            "score": 50
+        },
+        {
+            "name": "player 10",
+            "score": 723
+        },
+        {
+            "name": "player 11",
+            "score": 2034
         }
     ]
   } catch (error) {
@@ -32,7 +60,7 @@ async function renderUsers() {
   users.sort(function(user1, user2) {return user2.score - user1.score});
   console.log(users);
   //dynamically makes a table with contents of the stuff fetched.
-  let leaderboard_table = `"<table id="leaderboard"><tr><th>Rank</th><th>Player</th><th>Score</th></tr>"`;
+  let leaderboard_table = `"<table id="leaderboard"><tr><th>RANK</th><th>PLAYER</th><th>SCORE</th></tr>"`;
 
   //map = for each of the elements in the arary (for each user) it makes a new row
   let index = 1;
