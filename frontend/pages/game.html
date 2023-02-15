@@ -48,16 +48,46 @@
 
 
     <script type = "text/javascript">
-        function drawoncanvas(){
+        function drawsquare(x, y){
             var canvas= document.getElementById("Grid");
             var ctx= canvas.getContext("2d");
 
-            ctx.fillStyle= "#0000FF";
-            ctx.fillRect(0, 0, 1000, 1000);
+            ctx.fillStyle= "#000000";
+            ctx.fillRect(x, y, 35, 35);
         }
-        drawoncanvas()
+
+        
+
+        function generateFill(){
+
+            for(i = 0; i < 699;i+=35 ){
+                
+                for(j = 0; j < 349;j+=35 ){
+
+                
+                    
+                    let x = (Math.random());
+
+
+        
+
+                    if (x<0.5){
+                        continue
+                    
+
+                    }else {
+                        drawsquare(j,i)
+
+                    }
+
+                }
+
+            }
+        }
+
+        generateFill()
 
     </script>
-    <button onclick="drawoncanvas()">Button1</button>
+
 </body>
 </html>
