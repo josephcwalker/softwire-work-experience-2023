@@ -3,11 +3,21 @@ import * as controller from './controller/index.js';
 
 const router = express.Router();
 
-router.get(
-  '/api/example',
+router.post(
+  '/newscore',
   (req, res) => {
-    controller.someAction(res, req.body);
+   
+    controller.newScore(res, req.body);
   }
 );
+
+router.get(
+  '/scores',
+  (req, res) => {
+    
+    controller.getScores(res, req.body);
+  }
+);
+
 
 export default router;

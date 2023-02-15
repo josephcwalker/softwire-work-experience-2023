@@ -7,18 +7,11 @@ const sql = postgres({
     password             : 'g1raffe',
 });
 
+
 await sql`
-
-CREATE TABLE all_plays (
-    column1 name,
-    column2 score,
-    column3 time,
-    column4 location,
-)
-
-SELECT column1, column3, column4
-FROM all_plays
-ORDER BY column2 DESC
-`;
+CREATE TABLE IF NOT EXISTS all_play 
+    (name varchar(255),
+    score int)
+    `;
 
 export default sql;

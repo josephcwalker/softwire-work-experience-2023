@@ -1,15 +1,35 @@
 import sql from '../../services/postgres.js';
 
-export const someAction = async (res, parameters) => {
-    await sql`
-    CREATE TABLE IF NOT EXISTS example (a INTEGER, b TEXT)
-    `;
-    await sql`INSERT INTO example (a, b) VALUES (1, 'hello')`;
-    const data = await sql`SELECT * FROM example`;
-    
-    return  res.status(200).json({
-        status: 200,
-        message: 'This is an example',
-        data: data
-    })
+
+
+export const getScores = async (res, parameters)=> {
+  
+  const data = await sql`
+      select *
+      from all_play
+    `
+  return  res.status(200).json(
+      {status: 200,
+      data: data}
+  )
 }
+
+//users = Result [{ name: "Walter", score: 80 }, { name: 'Murray', score: 68 }, ...]
+//new score
+
+
+
+
+export const newScore = async ( res, parameters )=> {
+  
+  var name = parameters.name
+  var score = parameters.score
+  await sql`
+   INSERT INTO all_play
+     (name, score)
+   VALUES
+     (${ name }, ${ score })
+  `
+  return  res.status(200).json(
+    {status: 200})
+  }
