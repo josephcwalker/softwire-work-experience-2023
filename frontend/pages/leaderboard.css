@@ -11,6 +11,7 @@ p {
 
   h1 {
     text-align: center;
+    font-weight: bolder;
   }
 /* table size*/
 table {
@@ -29,12 +30,12 @@ td {
   }
 
 
-tr:hover {background-color: #04AA6D;}
+tr:hover {background-color: #2A9D8F;}
 
   
 tr:nth-child(even) {background-color: #f2f2f2;}
 
 th {
-    background-color: #04AA6D;
+    background-color: #2A9D8F;
     color: white;
   }
