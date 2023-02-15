@@ -127,14 +127,16 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Possible colours: "cyan, blue, orange, yellow, green, purple, red"
 		 */
 		getTileAtPosition: function(x, y) {
-			if (x > 9 && x < 0 && y < 0 && y > 19){
-				if (this.gameState.playfield[x][y] === null){
-					return ('No tile')
-				} else {
-					return(this.gameState.playfield[x][y])
-				}
-			} else{
-				alert('Invalid coordinate')
+			if (x < 10 && x >= 0 && y >= 0 && y < 20){
+				if (this.gameState.playfield[y][x] !== null){
+					return this.gameState.playfield[y][x] // will be a colour like blue or null
+				} 
+				let i = x - this.gameState.activeTetromino.position.x
+				let j = -(y - this.gameState.activeTetromino.position.y)
+				if (i >= 0 && i < 4 && j >= 0 && j < 4 ){
+					return this.gameState.activeTetromino.tiles[j][i]
+				} 
+					return(null)	
 			}
 		},
 
@@ -244,13 +246,13 @@ export default function createGame(initialGameState = emptyGameState) {
 		 */
 		holdCurrentTetromino: function() {
 			let tempHeldTetromino = this.gameState.heldTetromino
-			if (this.gameState.heldTetromino === "null"){
+			if (this.gameState.heldTetromino === null){
 				this.gameState.heldTetromino = this.gameState.activeTetromino
 
 			} else {
-				this.gameState.tempHeldTetromino = this.gameState.heldTetromino
+				tempHeldTetromino = this.gameState.heldTetromino
 				this.gameState.heldTetromino = this.gameState.activeTetromino
-				this.gameState.activeTetromino = this.gameState.tempHeldTetromino
+				this.gameState.activeTetromino = tempHeldTetromino
 			} 
 		},
 	};
