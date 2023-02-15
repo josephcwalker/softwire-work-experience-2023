@@ -7,7 +7,7 @@ async function getUsers() {
       return [
         {
             "name": "player 1",
-            "score": 10
+            "score": 150
         },
         {
             "name": "player 2",
