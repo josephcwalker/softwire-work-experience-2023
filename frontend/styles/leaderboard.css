@@ -2,7 +2,7 @@
 table, th, td {
     border: 1px solid;
     font-family: Monaco, monospace;
-    /*background-color: white;*/
+    
   }
  
 /* this is for the hola amigos */
@@ -17,6 +17,9 @@ p {
     font-weight: bolder;
     color: white;
     font-family: Monaco, monospace;
+    border-style: solid;
+    border-color: white;
+    background-color: #2A9D8F;
   }
 /* table size*/
 table {
