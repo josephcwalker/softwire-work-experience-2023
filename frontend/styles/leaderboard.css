@@ -1,17 +1,22 @@
 /* border */
 table, th, td {
     border: 1px solid;
+    font-family: Monaco, monospace;
+    /*background-color: white;*/
   }
  
 /* this is for the hola amigos */
 p {
     text-align: center;
     color: red;
+    font-family: Monaco, monospace;
   }
 
   h1 {
     text-align: center;
     font-weight: bolder;
+    color: white;
+    font-family: Monaco, monospace;
   }
 /* table size*/
 table {
@@ -35,4 +40,8 @@ tr:hover {background-color: #2A9D8F;}
 th {
     background-color: #2A9D8F;
     color: white;
+  }
+
+  body {
+    background-color: #264653;
   }
