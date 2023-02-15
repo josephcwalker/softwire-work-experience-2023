@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <script type="text/javascript" src = "gameUI.js"></script>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Tetris Game</title>
 </head>
+
+
+
 <body style="background-color: #E76F51;">
 
     <div style="text-align: center;">
         <canvas id="Grid" width = 350px height="700" style="border:5px solid #264653; background-color: rgba(233,196,104,0.5);"></canvas>
         <drawBoard()
     </div>
+
+
     <script type="text/javascript">
         var cnv=document.getElementById("Grid");
         var ctx = cnv.getContext("2d");
@@ -35,8 +40,24 @@
         }
 
     </script>
-    <span style="text-align:right;">
-        <canvas id="Next Pieces" width="175" height="350" style="border:5px solid #264653; background-color: rgba(233,196,104,0.3)"
+
+
+    <span style="text-align: start;">
+        <canvas id="Next Pieces" width="175" height="700" style="border:5px solid #264653; background-color: rgba(233,196,104,0.3)"
     </span>
+
+
+    <script type = "text/javascript">
+        function drawoncanvas(){
+            var canvas= document.getElementById("Grid");
+            var ctx= canvas.getContext("2d");
+
+            ctx.fillStyle= "#0000FF";
+            ctx.fillRect(0, 0, 1000, 1000);
+        }
+        drawoncanvas()
+
+    </script>
+    <button onclick="drawoncanvas()">Button1</button>
 </body>
 </html>
