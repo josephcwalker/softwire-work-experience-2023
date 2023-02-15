@@ -21,6 +21,7 @@ p {
 /* table size*/
 table {
     width: 100%;
+    background-color: white
   }
 th {
     height: 70px;
