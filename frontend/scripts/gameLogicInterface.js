@@ -136,11 +136,19 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Progress the game forward one timestep
 		 */
 		gameTick: function() {
-			// 1: Move currently active piece down
-			// 2: Lock piece in place if it can't move down anymore
-			// 3: Clear any full lines
-			// 4: Increase score
-			// 5: Get new piece from upcoming tetrominoes
+			if (this.gameState.playfield[this.gameState.activeTetromino.position.y][this.gameState.activeTetromino.position.x] === null){
+				this.gameState.activeTetromino.position.y = this.gameState.activeTetromino.position.y - 1
+			} else {
+				this.gameState.activeTetromino = this.gameState.upcomingTetrominoes[0]
+			}
+			if (!this.gameState.playfield[0].includes(null)){
+				for (let tempCheck = 0; tempCheck < 20; tempCheck = tempCheck + 1){
+					this.gameState.playfield[tempCheck].splice(0,10)
+					this.gameState.playfield.splice(19,0,null)
+					this.gameState.score = this.gameState.score + 100
+				}	
+			}
+			
 		},
 
 		/**
@@ -148,6 +156,9 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * @return {boolean}
 		 */
 		isGameOver: function() {
+			if (playfield[19].includes("cyan" || "blue" || "orange" || "yellow" || "green" || "purple" || "red")){
+				return(true)
+			}
 
 		},
 
@@ -249,7 +260,11 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Move the current tetromino right 1 tile
 		 */
 		moveRight: function() {
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+			if (x < this.gameState.activeTetromino.position.x || x > this.gameState.activeTetromino.position.x){
+				return (false)
+			} else{
+				this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
+			}
 		},
 
 		/**
@@ -280,6 +295,7 @@ export default function createGame(initialGameState = emptyGameState) {
 			let tempHeldTetromino = this.gameState.heldTetromino
 			if (this.gameState.heldTetromino === null){
 				this.gameState.heldTetromino = this.gameState.activeTetromino
+	
 
 			} else {
 				tempHeldTetromino = this.gameState.heldTetromino
