@@ -11,9 +11,8 @@ async function getUsers() {
 }
   //you call the function above. 
   async function renderUsers() {
-    let users = await getUsers(); //it does);
-    // IT DOESNT ACTUALLY WORK. SOLVE THIS LATER
-    //users.sort(function(user1, user2) {user2.score - user1.score});
+    let users = await getUsers(); 
+    users.sort(function(user1, user2) {return user2.score - user1.score});
     console.log(users);
     //dynamically makes a table with contents of the stuff fetched.
     let leaderboard_table = `"<table id="leaderboard"><tr><th>Rank</th><th>Player</th><th>Score</th></tr>"`;
