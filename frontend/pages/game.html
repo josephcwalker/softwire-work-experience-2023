@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <script type="text/javascript" src = "gameUI.js"></script>
+    <script type="text/javascript" src = "gameLogicInterface.js"></script>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -57,8 +58,18 @@
 		        "purple",
 		        "red"
 	        ];
-
-
+            let game = createGame()
+            for (i = 0; i < 349; i+= 35){
+                for(j=0; j < 699; j+=35){
+                    let colour = game.getTileAtPosition(i,j);
+                    if (colour == "null"){
+                        continue
+                    }else{
+                        drawsquare(i,j,colour);
+                    }
+                }
+            }
+            
 
 
         function drawsquare(x, y, color){
@@ -100,7 +111,20 @@
             }
         }
 
-        generateFill()
+        function drawTetromino(x, y, piece, color){
+            alert("yippe")
+            for (b=0; b<3;b++){
+                    for(z=0; z<3;z++){
+                        if (piece[b][z] = 0 ){
+                                continue
+                        } else{
+                                drawsquare(x, y, color)
+                        }
+                    }
+            }
+        }
+
+        drawTetromino(0,0,nextPiece, nextColour)
 
     </script>
 
