@@ -21,14 +21,14 @@
     <script type="text/javascript">
         var cnv=document.getElementById("Grid");
         var ctx = cnv.getContext("2d");
-        for(var i=1; i<=700; i=i+35){
+        for(var i=0; i<=700; i=i+35){
             ctx.moveTo(0, i);
             ctx.lineTo(700,i);
           
             ctx.strokeStyle="#264653";
             ctx.stroke();  
         }
-        for(var i=1; i<=700; i=i+35){
+        for(var i=0; i<=700; i=i+35){
             ctx.moveTo(i,0);
             ctx.lineTo(i,700);
 
@@ -48,25 +48,39 @@
 
 
     <script type = "text/javascript">
-        function drawsquare(x, y){
+            const options = [
+                "cyan",
+		        "blue",
+		        "orange",
+		        "yellow",
+		        "green",
+		        "purple",
+		        "red"
+	        ];
+
+
+
+
+        function drawsquare(x, y, color){
             var canvas= document.getElementById("Grid");
             var ctx= canvas.getContext("2d");
 
-            ctx.fillStyle= "#000000";
+            ctx.fillStyle= color ;
             ctx.fillRect(x, y, 35, 35);
         }
 
-        
-
+       
         function generateFill(){
 
             for(i = 0; i < 699;i+=35 ){
                 
+            
                 for(j = 0; j < 349;j+=35 ){
 
                 
                     
                     let x = (Math.random());
+                    
 
 
         
@@ -76,7 +90,8 @@
                     
 
                     }else {
-                        drawsquare(j,i)
+                        let y = Math.floor(Math.random()*7)-1;
+                        drawsquare(j,i,options[y])
 
                     }
 
