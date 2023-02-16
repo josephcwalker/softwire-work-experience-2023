@@ -74,6 +74,28 @@ function getRandomColour() {
 	return options[Math.floor(Math.random() * options.length)];
 }
 
+function rotateMatrix90DegreesClockwise(matrix) {
+	// get the dimensions of the source matrix
+	const M = source.length;
+	const N = source[0].length;
+
+	// create a new NxM destination array
+	let destination = new Array(N);
+	for (let i = 0; i < N; i++) {
+		destination[i] = new Array(M);
+	}
+
+	// start copying from source into destination
+	for (let i = 0; i < N; i++) {
+		for (let j = 0; j < M; j++) {
+			destination[i][j] = source[M - j - 1][i];
+		}
+	}
+
+	// return the destination matrix
+	return destination;
+}
+
 export const emptyGameState = {
 	// A 10x20 array full of null values
 	playfield: new Array(HEIGHT).fill(new Array(WIDTH).fill(null)),
@@ -243,14 +265,28 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Rotate the current tetromino clockwise 90 degrees
 		 */
 		rotateTetrominoClockwise: function() {
+			let newActiveTetrminoState = Object.assign({}, this.gameState.activeTetromino);
+			newActiveTetrminoState.tiles = rotateMatrix90DegreesClockwise(this.gameState.activeTetromino.tiles);
 
+			if (this.isStatePossible(newActiveTetrminoState)) {
+				this.gameState.activeTetromino = newActiveTetrminoState;
+			}
 		},
 
 		/**
 		 * Rotate the current tetromino anti-clockwise 90 degrees
 		 */
 		rotateTetrominoAntiClockwise: function() {
+			let newActiveTetrminoState = Object.assign({}, this.gameState.activeTetromino);
 
+			// I'm lazy :P
+			for (let i = 0; i < 3; i++) {
+				newActiveTetrminoState.tiles = rotateMatrix90DegreesClockwise(this.gameState.activeTetromino.tiles);
+			}
+
+			if (this.isStatePossible(newActiveTetrminoState)) {
+				this.gameState.activeTetromino = newActiveTetrminoState;
+			}
 		},
 
 		/**
