@@ -101,10 +101,6 @@ export const emptyGameState = {
 export default function createGame(initialGameState = emptyGameState) {
 	const tetrisGame = {
 		gameState: initialGameState,
-
-		isStatePossible: function(newState){
-
-		},
 		/**
 		 * Checks if a new active tetromino state is possible
 		 *
