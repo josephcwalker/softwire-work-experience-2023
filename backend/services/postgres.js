@@ -7,10 +7,11 @@ const sql = postgres({
     password             : 'g1raffe',
 });
 
-
 await sql`
 CREATE TABLE IF NOT EXISTS all_play 
-    (name varchar(255),
+    (
+    id serial primary key,
+    name varchar(255),
     score int)
     `;
 
