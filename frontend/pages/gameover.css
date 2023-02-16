@@ -1,0 +1,32 @@
+body {
+    background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2012/04/02/1939/efa4a21f5ea5834cbbb1b30bc94eb17c.jpg");
+  }
+  p {
+    color: aqua;
+    font-size: xx-large;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+h1 {    
+    color: red;
+    font-size: xx-large;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+.container{
+    height: 105px;
+    width: 1200px;
+    border-radius: 25px;
+    text-align: center;
+}
+.b{
+    width: 250px;
+    height: 75px;
+    border-radius: 25px;
+    margin-left: 250px;
+    background-color:#2A9D8F;
+}
+  img {
+    padding: 10px;
+    margin-left: 545px;
+  }
