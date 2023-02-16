@@ -8,6 +8,7 @@
     "start:watch": "nodemon -L ./index.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "nodemon": "^2.0.20",
     "postgres": "^3.3.3"

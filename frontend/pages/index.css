@@ -3,16 +3,30 @@
 }
 p {
     color: aqua;
-    font-size: x-large;
+    font-size: xx-large;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
 }
 h1 {
     color: blue;
     font-size: xx-large;
+    text-align: center;
 }
 img {
     padding: 10px;
+    margin-left: 575px;
+
 }
 body {
     background-image: url("https://www.wallpaperup.com/uploads/wallpapers/2012/04/02/1939/efa4a21f5ea5834cbbb1b30bc94eb17c.jpg");
   }
-  
+  h1{
+    font-family: 'Poppins', sans-serif;
+  }
+  .a{
+    height: 105px;
+    width: 250px;
+    border-radius: 25px;
+    text-align: center;
+    margin-left: 275px;
+  }

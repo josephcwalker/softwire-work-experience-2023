@@ -1,59 +1,23 @@
 async function getUsers() {
-  //let url = "http://127.0.0.1:5500/frontend/leaderboard.json";
-  try {
-     
-      //let res = await fetch(url);
-      //let res = await import(url);
-      return [
-        {
-            "name": "player 1",
-            "score": 150
-        },
-        {
-            "name": "player 2",
-            "score": 76
-        },
-        {
-            "name": "player 3",
-            "score": 20
-        },
-        {
-            "name": "player 4",
-            "score": 100
-        },
-        {
-            "name": "player 5",
-            "score": 120
-        },
-        {
-            "name": "player 6",
-            "score": 90
-        },
-        {
-            "name": "player 7",
-            "score": 2
-        },
-        {
-            "name": "player 8",
-            "score": 1
-        },
-        {
-            "name": "player 9",
-            "score": 50
-        },
-        {
-            "name": "player 10",
-            "score": 723
-        },
-        {
-            "name": "player 11",
-            "score": 2034
-        }
-    ]
-  } catch (error) {
-      console.log(error);
+    const response = await fetch('http://localhost:3000/scores');
+    // try {
+    const json = await response.json();
+    console.log(json);
+    return json.data
+    // if (response.status >= 200 && response.status <= 299) {
+    //     const jsonResponse = await response.json();
+    //     console.log(jsonResponse);
+    //   } else {
+    //     // Handle errors
+    //     console.log(response.status, response.statusText);
+    //   }
+    // return await json.json;
+    // }
+    //  catch (error) {
+    //   console.log(error);
+    //  }
   }
-}
+
 //you call the function above. 
 async function renderUsers() {
   let users = await getUsers(); 
