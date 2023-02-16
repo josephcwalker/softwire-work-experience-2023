@@ -1,0 +1,50 @@
+/* border */
+table, th, td {
+    border: 1px solid;
+    font-family: Monaco, monospace;
+}
+  
+/* this is for the hola amigos */
+p {
+    text-align: center;
+    color: red;
+    font-family: Monaco, monospace;
+  }
+
+  h1 {
+    text-align: center;
+    font-weight: bolder;
+    color: white;
+    font-family: Monaco, monospace;
+    border-style: solid;
+    border-color: white;
+    background-color: #2A9D8F;
+  }
+/* table size*/
+table {
+    width: 100%;
+    background-color: white
+  }
+th {
+    height: 70px;
+  }
+
+th {
+    text-align: center;
+  }
+
+td {
+    text-align: left;
+  }
+
+
+tr:hover {background-color: #2A9D8F;}
+
+th {
+    background-color: #2A9D8F;
+    color: white;
+  }
+
+  body {
+    background-color: #264653;
+  }
