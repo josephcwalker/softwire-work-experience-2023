@@ -86,8 +86,12 @@ function drawTiles(){
                 for(j = 0; j < 349;j+=35 ){
                         
                         let temp_i = i/35;
+                        let tempi = 20 - temp_i;
+
                         let temp_j = j/35;
-                        let temp = game.getTileAtPosition(temp_j, temp_i);
+                        let tempj = 10 - temp_j;
+
+                        let temp = game.getTileAtPosition(tempj, tempi);
                         if (temp == null){
                                 continue;
                         }else {
