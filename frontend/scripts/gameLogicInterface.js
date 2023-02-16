@@ -186,7 +186,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * @return {boolean}
 		 */
 		isGameOver: function() {
-			if (playfield[19].includes("cyan" || "blue" || "orange" || "yellow" || "green" || "purple" || "red")){
+			if (!playfield[19].includes(null)){
 				return(true)
 			}
 
@@ -228,8 +228,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Which stats to keep track of can be determined later
 		 */
 		getStats: function() {
-			return this.gameState.tetrisesMade
-			return this.gameState.tetrominoesDropped
+			return [this.gameState.tetrisesMade, this.gameState.tetrominoesDropped]
 		},
 
 		/**
