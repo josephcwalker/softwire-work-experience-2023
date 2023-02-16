@@ -78,6 +78,8 @@ export const emptyGameState = {
 	// A 10x20 array full of null values
 	playfield: new Array(HEIGHT).fill(new Array(WIDTH).fill(null)),
 	score: 0,
+	tetrisesMade: 0,
+	tetrominoesDropped: 0,
 	upcomingTetrominoes: Array.from({length: 3}, getRandomTetromino),
 	heldTetromino: null,
 	activeTetromino: {
@@ -99,16 +101,84 @@ export const emptyGameState = {
 export default function createGame(initialGameState = emptyGameState) {
 	const tetrisGame = {
 		gameState: initialGameState,
+		/**
+		 * Checks if a new active tetromino state is possible
+		 *
+		 * The paramenter newState is the same format as `activeTetromino` in the gameState object
+		 * @param {object} newState
+		 * @returns {boolean}
+		 */
+		isStatePossible: function(newState) {
+			for (let i = 0; i < newState.tiles[0].length; i++) {
+				for (let j = 0; j < newState.tiles.length; j++) {
+					if (newState.tiles[j][i] == null) { continue; }
+
+					let gridCoords = {
+						x: newState.position.x + i,
+						y: newState.position.y - j // Playfield has origin bottom-left, tiles has origin top-left
+					};
+
+					// Check if tiles are out of bounds
+					if (gridCoords.x < 0 || gridCoords.x >= WIDTH || gridCoords.y < 0 || gridCoords.y >= HEIGHT) {
+						return false;
+					}
+
+					// Check if tiles are on top of each other
+					if (this.gameState.playfield[gridCoords.y][gridCoords.x] != null) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		},
 
 		/**
 		 * Progress the game forward one timestep
 		 */
 		gameTick: function() {
-			// 1: Move currently active piece down
-			// 2: Lock piece in place if it can't move down anymore
-			// 3: Clear any full lines
-			// 4: Increase score
-			// 5: Get new piece from upcoming tetrominoes
+			let tempActive = Object.assign({}, this.gameState.activeTetromino);
+			tempActive.position.y = tempActive.position.y - 1
+			if (this.gameState.isStatePossible(tempActive) === true){
+				this.gameState.activeTetromino.position.y = this.gameState.activeTetromino.position.y - 1
+			} else {
+				for (let i = 0; i < newState.tiles[0].length; i++) {
+					for (let j = 0; j < newState.tiles.length; j++) {
+						if (newState.tiles[j][i] == null) { continue; }
+	
+						let gridCoords = {
+							x: newState.position.x + i,
+							y: newState.position.y - j // Playfield has origin bottom-left, tiles has origin top-left
+						};
+						
+						this.gameState.playfield[gridCoords.y][gridCoords.x] = this.gameState.activeTetromino.tiles[j][i]
+						
+					}
+				}
+				this.gameState.activeTetromino = {
+					...(function() {
+						const tetromino = getRandomTetromino();
+						return {
+							name: tetromino,
+							tiles: TetrominoShapes[tetromino]
+						};
+					}()),
+					position: {
+						x: (WIDTH - 4) / 2,
+						y: HEIGHT - 2, // Top row is reserved for game over
+					},
+					colour: getRandomColour()
+				}
+			}
+			for (let rowCheck = 19; rowCheck >= 0; rowCheck--){ // rowCheck determines what row of the playfield it is currently checking with 0 being the bottom
+				if (!this.gameState.playfield[rowCheck].includes(null)){
+					this.gameState.playfield.splice(rowCheck,1) // removes the row with a full line
+					this.gameState.playfield.push(new Array(WIDTH).fill(null)) // adds a new row on top
+					this.gameState.score = this.gameState.score + 100
+					this.gameState.tetrisesMade = this.gameState.tetrisesMade + 1
+				}	
+			}
+			
 		},
 
 		/**
@@ -116,6 +186,9 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * @return {boolean}
 		 */
 		isGameOver: function() {
+			if (!playfield[19].includes(null)){
+				return(true)
+			}
 
 		},
 
@@ -155,7 +228,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Which stats to keep track of can be determined later
 		 */
 		getStats: function() {
-			
+			return [this.gameState.tetrisesMade, this.gameState.tetrominoesDropped]
 		},
 
 		/**
@@ -187,37 +260,12 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Move the current tetromino left 1 tile
 		 */
 		moveLeft: function() {
-		if (this.gameState.activeTetromino.name === 'I Piece' && this.gameState.activeTetromino.position.x > 9){
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
-			
-		} else if (this.gameState.activeTetromino.name === 'J Piece' && this.gameState.activeTetromino.position.x > 9){
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
-
-		} else if (this.gameState.activeTetromino.name === 'L Piece' && this.gameState.activeTetromino.position.x > 9){
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
-
-		} else if (this.gameState.activeTetromino.name === 'O Piece' && this.gameState.activeTetromino.position.x > 9){
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
-			
-		} else if (this.gameState.activeTetromino.name === 'S Piece' && this.gameState.activeTetromino.position.x > 9){
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
-			
-		} else if (this.gameState.activeTetromino.name === 'Z Piece' && this.gameState.activeTetromino.position.x > 9){
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
-			
-		} else if (this.gameState.activeTetromino.name === 'T Piece' && this.gameState.activeTetromino.position.x > 9){
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
-			
-		} else{
-			alert('Something has gone wrong')
-		}
 		},
 
 		/**
 		 * Move the current tetromino right 1 tile
 		 */
 		moveRight: function() {
-			this.gameState.activeTetromino.position.x = this.gameState.activeTetromino.position.x + 1
 		},
 
 		/**
@@ -238,7 +286,42 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Instantly drop the current tetromino as far as it goes and lock it in place
 		 */
 		instantDropTetromino: function() {
-
+			for (let tempY = 0; tempY < 50;){
+			let tempActive = Object.assign({}, this.gameState.activeTetromino);
+			tempActive.position.y = tempActive.position.y - 1
+			if (this.gameState.isStatePossible(tempActive) === true){
+				this.gameState.activeTetromino.position.y = this.gameState.activeTetromino.position.y - 1
+			} else {
+				for (let i = 0; i < newState.tiles[0].length; i++) {
+					for (let j = 0; j < newState.tiles.length; j++) {
+						if (newState.tiles[j][i] == null) { continue; }
+	
+						let gridCoords = {
+							x: newState.position.x + i,
+							y: newState.position.y - j // Playfield has origin bottom-left, tiles has origin top-left
+						};
+						
+						this.gameState.playfield[gridCoords.y][gridCoords.x] = this.gameState.activeTetromino.tiles[j][i]
+						
+					}
+				}
+				this.gameState.activeTetromino = {
+					...(function() {
+						const tetromino = getRandomTetromino();
+						return {
+							name: tetromino,
+							tiles: TetrominoShapes[tetromino]
+						};
+					}()),
+					position: {
+						x: (WIDTH - 4) / 2,
+						y: HEIGHT - 2, // Top row is reserved for game over
+					},
+					colour: getRandomColour()
+				}
+				tempY = 51 // stops for loop
+			}
+		}
 		},
 
 		/**
@@ -247,12 +330,25 @@ export default function createGame(initialGameState = emptyGameState) {
 		holdCurrentTetromino: function() {
 			let tempHeldTetromino = this.gameState.heldTetromino
 			if (this.gameState.heldTetromino === null){
-				this.gameState.heldTetromino = this.gameState.activeTetromino
+				this.gameState.heldTetromino = this.gameState.activeTetromino.name
+	
 
 			} else {
-				tempHeldTetromino = this.gameState.heldTetromino
-				this.gameState.heldTetromino = this.gameState.activeTetromino
-				this.gameState.activeTetromino = tempHeldTetromino
+
+				let tempHeldName = Object.assign({}, this.gameState.heldTetromino); // assigns held tetromino name to value which will become the active tetromino
+				let tempName = Object.assign({}, this.gameState.activeTetromino.name); // assigns active tetromino name to value which will become the held tetromino
+
+				 this.gameState.activeTetromino = {
+					name: tempHeldName,
+					tiles: TetrominoShapes[tempHeldName],
+					position: {
+						x: (WIDTH - 4) / 2,
+						y: HEIGHT - 2, // Top row is reserved for game over
+					},
+					colour: getRandomColour()
+				
+				};
+				this.gameState.heldTetromino = tempName
 			} 
 		},
 	};
