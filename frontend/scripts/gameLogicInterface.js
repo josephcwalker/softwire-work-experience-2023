@@ -239,7 +239,12 @@ export default function createGame(initialGameState = emptyGameState) {
 				let i = x - this.gameState.activeTetromino.position.x
 				let j = -(y - this.gameState.activeTetromino.position.y)
 				if (i >= 0 && i < 4 && j >= 0 && j < 4 ){
-					return this.gameState.activeTetromino.tiles[j][i]
+
+					if (this.gameState.activeTetromino.tiles[j][i] == 0) {
+						return null;
+					} else {
+						return this.gameState.activeTetromino.colour;
+					}
 				} 
 					return(null)	
 			}
