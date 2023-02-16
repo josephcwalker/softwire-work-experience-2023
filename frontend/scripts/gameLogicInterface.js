@@ -101,6 +101,38 @@ export default function createGame(initialGameState = emptyGameState) {
 		gameState: initialGameState,
 
 		/**
+		 * Checks if a new active tetromino state is possible
+		 *
+		 * The paramenter newState is the same format as `activeTetromino` in the gameState object
+		 * @param {object} newState
+		 * @returns {boolean}
+		 */
+		isStatePossible: function(newState) {
+			for (let i = 0; i < newState.tiles[0].length; i++) {
+				for (let j = 0; j < newState.tiles.length; j++) {
+					if (newState.tiles[j][i] == null) { continue; }
+
+					let gridCoords = {
+						x: newState.position.x + i,
+						y: newState.position.y - j // Playfield has origin bottom-left, tiles has origin top-left
+					};
+
+					// Check if tiles are out of bounds
+					if (gridCoords.x < 0 || gridCoords.x >= WIDTH || gridCoords.y < 0 || gridCoords.y >= HEIGHT) {
+						return false;
+					}
+
+					// Check if tiles are on top of each other
+					if (this.gameState.playfield[gridCoords.y][gridCoords.x] != null) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		},
+
+		/**
 		 * Progress the game forward one timestep
 		 */
 		gameTick: function() {
