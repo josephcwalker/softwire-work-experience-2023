@@ -174,12 +174,23 @@ export default function createGame(initialGameState = emptyGameState) {
 				if (!this.gameState.playfield[rowCheck].includes(null)){
 					this.gameState.playfield.splice(rowCheck,1) // removes the row with a full line
 					this.gameState.playfield.push(new Array(WIDTH).fill(null)) // adds a new row on top
-					this.gameState.score = this.gameState.score + 100
 					this.gameState.tetrisesMade = this.gameState.tetrisesMade + 1
+					let scoreCount = 0
+					scoreCount = scoreCount + 1
+					if (scoreCount === 1){
+						this.gameState.score = this.gameState.score + 100
+					} else if (scoreCount === 2){
+						this.gameState.score = this.gameState.score + 300
+					} else if (scoreCount === 3){
+						this.gameState.score = this.gameState.score + 500
+					} else if (scoreCount >= 4){
+						this.gameState.score = this.gameState.score + 800
+					}
 				}	
 			}
 			
 		},
+
 
 		/**
 		 * Return if the game is over
