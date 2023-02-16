@@ -3,27 +3,27 @@ import createGame, { Tetromino } from "./gameLogicInterface.js"
 
 // draws the grid for the main playfield
 
-
-var cnv=document.getElementById("Grid");
-var ctx = cnv.getContext("2d");
-for(var i=0; i<=700; i=i+35){
-        ctx.moveTo(0, i);
-        ctx.lineTo(700,i);
+export function drawGrid(){
+        var cnv=document.getElementById("Grid");
+        var ctx = cnv.getContext("2d");
+        for(var i=0; i<=700; i=i+35){
+                ctx.moveTo(0, i);
+                ctx.lineTo(700,i);
         
-        ctx.strokeStyle="#264653";
-        ctx.stroke();  
-}
-for(var i=0; i<=700; i=i+35){
-        ctx.moveTo(i,0);
-        ctx.lineTo(i,700);
+                ctx.strokeStyle="#264653";
+                ctx.stroke();  
+        }
+        for(var i=0; i<=700; i=i+35){
+                ctx.moveTo(i,0);
+                ctx.lineTo(i,700);
 
         
 
-        ctx.strokeStyle="#264653";
-        ctx.stroke();
+                ctx.strokeStyle="#264653";
+                ctx.stroke();
 
+        }
 }
-
 
 const options = [
         "cyan",     
@@ -34,12 +34,6 @@ const options = [
         "purple",
         "red"
         ];
-
-
-
-
-let game = createGame()
-
 
 
 function drawsquare(x, y, color){
@@ -83,14 +77,14 @@ function generateFill(){
 }
 
 
-function drawTiles(){
+export function drawTiles(game){
         var i;
         var j;
         for(i = 0; i < 20;i++ ){
                 for(j = 0; j < 10;j++ ){
                         
                         let tempi = 20 - i;
-                        let tempj = 10 - j;
+                        let tempj =  j;
 
                         let temp = game.getTileAtPosition(tempj, tempi);
                         if (temp == null){
@@ -108,7 +102,7 @@ function drawTiles(){
     
         }
 }
-drawTiles()
+
 
 
 
