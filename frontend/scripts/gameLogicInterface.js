@@ -177,7 +177,6 @@ export default function createGame(initialGameState = emptyGameState) {
 					this.gameState.playfield.push(new Array(WIDTH).fill(null)) // adds a new row on top
 					this.gameState.tetrisesMade = this.gameState.tetrisesMade + 1
 					scoreCount = scoreCount + 1
-					
 				}	
 			}
 			if (scoreCount === 1){
