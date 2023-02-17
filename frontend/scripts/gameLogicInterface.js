@@ -111,6 +111,7 @@ export const emptyGameState = {
 	score: 0,
 	tetrisesMade: 0,
 	tetrominoesDropped: 0,
+	tempStopper: 0,
 	upcomingTetrominoes: Array.from({length: 3}, getRandomTetromino),
 	heldTetromino: null,
 	activeTetromino: {
@@ -168,6 +169,11 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Progress the game forward one timestep
 		 */
 		gameTick: function() {
+			for (;this.gameState.tempStopper < 1;){
+				this.gameState.score = this.gameState.score - 800
+				this.gameState.tempStopper = this.gameState.tempStopper + 1
+			}
+			
 			let tempActive = JSON.parse(JSON.stringify(this.gameState.activeTetromino));
 			tempActive.position.y = tempActive.position.y - 1
 			if (this.isStatePossible(tempActive) === true){
@@ -218,6 +224,15 @@ export default function createGame(initialGameState = emptyGameState) {
 			} else if (scoreCount >= 4){
 				this.gameState.score = this.gameState.score + 800
 			}
+
+			if (scoreCount >= 1) {
+				this.scoreChangedCallback(this.gameState.score);
+			}
+			
+		},
+
+		setScoreChangedCallback: function(callback) {
+			this.scoreChangedCallback = callback;
 		},
 
 

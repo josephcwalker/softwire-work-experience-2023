@@ -10,6 +10,12 @@ function clearGrid(){
     drawGrid();
 }
 
+function setScore(score) {
+    document.getElementById("Score").innerHTML = score;
+}
+
+game.setScoreChangedCallback(setScore);
+
 
 drawGrid();
 drawTiles(game);
