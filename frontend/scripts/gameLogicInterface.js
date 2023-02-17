@@ -196,7 +196,7 @@ export default function createGame(initialGameState = emptyGameState) {
 					}()),
 					position: {
 						x: (WIDTH - 4) / 2,
-						y: HEIGHT - 2, // Top row is reserved for game over
+						y: HEIGHT - 1, // Top row is reserved for game over
 					},
 					colour: getRandomColour()
 				}
@@ -386,7 +386,7 @@ export default function createGame(initialGameState = emptyGameState) {
 						}()),
 						position: {
 							x: (WIDTH - 4) / 2,
-							y: HEIGHT - 2, // Top row is reserved for game over
+							y: HEIGHT - 1, // Top row is reserved for game over
 						},
 						colour: getRandomColour()
 					}
@@ -434,7 +434,7 @@ export default function createGame(initialGameState = emptyGameState) {
 					tiles: TetrominoShapes[tempHeldName],
 					position: {
 						x: (WIDTH - 4) / 2,
-						y: HEIGHT - 2, // Top row is reserved for game over
+						y: HEIGHT - 1, // Top row is reserved for game over
 					},
 					colour: getRandomColour()
 				
