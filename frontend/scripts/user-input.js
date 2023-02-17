@@ -28,6 +28,11 @@ document.addEventListener('keydown', function(event) {
         clearGrid();
         drawTiles(game);
     }
+    else if(event.keyCode == 32) {
+        game.instantDropTetromino();
+        clearGrid();
+        drawTiles(game);
+    }
 
     
     
@@ -38,13 +43,22 @@ document.addEventListener('keydown', function(event){
     if(event.keyCode == 32){
         game.gameTick();
         clearGrid();
-        drawTiles(game)
+        drawTiles(game);
     }
 
 });
+
+function checkGameOver(){
+    let check =  game.isGameOver();
+    if (check){
+        location.replace("http://localhost:8080/pages/gameover.html?score=20")
+}
+}
 
 var interValid = window.setInterval(function(){
     game.gameTick();
     clearGrid();
     drawTiles(game);
+    checkGameOver();
 },1000);
+
