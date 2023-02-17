@@ -4,7 +4,6 @@ async function getUsers() {
     return json.data
 
   }
-
 async function renderUsers() {
   let users = await getUsers(); 
   users.sort(function(user1, user2) {return user2.score - user1.score});

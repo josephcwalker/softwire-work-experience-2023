@@ -8,6 +8,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../styles/style.css"> -->
+    
     <title>How To Play</title>
 
 
@@ -15,74 +19,97 @@
 <body>
 
     <style>
-.container {
-    width: 1500px;
-    height: 800px;
-    background-color: #2A9D8F;
-    border-radius: 10px;
-    margin: 0 auto;
+html{
+    background-color: #2a9d8f;
+}
+
+.wrapper {
+    padding: 25px;
+    background-color: #2a9d8f;
+ 
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.col-sm-4 {
+    margin-bottom: 35px;
+}
+
+.card {
+    background-color: #e76f51;
 
 }
 
-
-.col {
-    width: 400px;
-    height: 700px;
-    background-image: linear-gradient(#F4A261, #E76F51);
-    float: left;
-    border: 5px solid white;
-    border-radius: 20px;
-    margin: 40px;
-    font-family: 'Poppins', sans-serif;
-    
-    
-}
-
-
-.kbm {
-    height: 325px;
-    width: 350px;
-    margin-top: 15px;
-    margin-left: 25px;
-}
-
-.game-over {
-    height: 250px;
-    width: 350px;
-    margin-top: 65px;
-    margin-left: 25px;   
-
-}   
     </style>
+        
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                    <h5 class="card-title">
+                        Move The Tetrominos
+                    </h5>
+
+                    <p class="card-text">
+                        <font size="5px">
+                            You can move them left and right by using the arrow keys. <br>You can drop the tetromino faster by using the down arrow key and drop instanlt by using spcae bar. <br> You can use the top arrow key to rotate the tetrominos.
+                        </font>
+                    </p>
+                
+                    <img class="mx-auto d-block" src="kbm.PNG">
+
+                    </div>
+                </div>
+                </div>
+                <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+
+                    <h5 class="card-title">
+                        "Goal" - "Clear Lines" - "Score Points"
+                    </h5>
+
+                        <p class="card-text">
+                            <font size="5px">
+                                Put your organizational skills and endurance to the test by clearing as many lines as possible.<br> Maneuver the falling Tetriminos to fit them together within the Matrix. To clear a line, fill every square within a single row.<br> Earn points by clearing lines. Clear multiple lines at once to increase your scoring opportunities.            
+                            </font>
+                        </p>
+
+                    </div>
+                </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="card">
+                    <div class="card-body">
+
+                        <h5 class="card-title">
+                            GAME OVER!
+                        </h5>
+                        <p class="card-text">
+                            <font size="5px">
+                                Stack the Tetriminos too high and the game is over!
+                            </font>
+                        </p>
+                    
+                        <img class="img-fluid" src="game-over.PNG">
+                  
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    
     
 
+
+
     
-    <div class="container">
-        <div class="col">
-            <p>
-                <font color="white" size="5px">
-                    Move the tetrominos. <br>You can move them left and right by using the arrow keys. <br>You can drop the tetromino faster by using the down arrow key and drop instanlt by using spcae bar. <br> You can use the top arrow key to rotate the tetrominos
-                </font>
-            </p>
-            <img class="kbm" src="kbm.PNG">
-        </div>
-        <div class="col">
-            <p>
-                <font color="white" size="5px">
-                    GOAL - Put your organizational skills and endurance to the test by clearing as many lines as possible.<br>CLEAR LINES - Maneuver the falling Tetriminos to fit them together within the Matrix. To clear a line, fill every square within a single row.<br>SCORE POINTS - Earn points by clearing lines. Clear multiple lines at once to increase your scoring opportunities.
-                </font>
-            </p>
-        </div>
-        <div class="col">
-            <p>
-                <font color="white" size="5px">
-                    NEXT QUEUE - Preview the upcoming Tetrimino in the Next Queue to plan ahead and increase your scoring opportunities.<br>GAME OVER - Stack the Tetriminos too high and the game is over!
-                </font>
-                </p>
-                <img class="game-over" src="game over.jpg">
-            </div>
-    </div>
-    
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>    
 </body>
 </html>
