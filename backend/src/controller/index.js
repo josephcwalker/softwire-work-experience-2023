@@ -21,6 +21,7 @@ var max_score = 50
 export const newScore = async ( res, parameters )=> {
   var name = parameters.name
   var score = parameters.score
+  
   await sql`
    INSERT INTO all_play
      (name, score)

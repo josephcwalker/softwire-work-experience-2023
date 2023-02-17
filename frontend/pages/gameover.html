@@ -8,6 +8,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="gameover.css">
+    <!-- <script>
+        const params = new Proxy(new URLSearchParams(window.location.search), {
+            get: (searchParams, prop) => searchParams.get(prop),
+        });
+        const body = {
+            "name": "username",
+            "score": parseInt(params.score)
+        }
+        console.log(body);
+        fetch('http://localhost:3000/newscore', {
+            method: 'POST',
+            body: JSON.stringify(body)
+        }).catch(e => console.log(e));
+    </script> -->
     
     <title>GAMEOVER</title>
 </head>
@@ -15,7 +29,7 @@
     <h1>
         GAME OVER...
     </h1>
-    <img class="game-over" src="game over.jpg">
+    <img class="game-over" src="game-over.jpg">
     <p>
         You tried your best if you would like to play again click the button below or if no then check out the leader board
     </p>
@@ -23,7 +37,7 @@
         <source src="../assets/mixkit-arcade-retro-game-over-213.wav" type="audio/wav">
     </audio>
     <div class="container">
-        <button class="b" onclick="window.location.href = 'gamepage.html';">play again?</button>
+        <button class="b" onclick="window.location.href = 'game.html';">play again?</button>
         <button class="b" onclick="window.location.href = 'leaderboard.html';">leaderboard</button>
         <button class="b" onclick="window.location.href = 'credits.html';">Credits</button>
     </div>
