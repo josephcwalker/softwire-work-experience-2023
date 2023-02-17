@@ -2,15 +2,17 @@
     padding: 20px;
 }
 p {
-    color: aqua;
-    font-size: xx-large;
+  
+    color: transparent;
+    font-size: 50px ;
     text-align: center;
     font-family: 'Poppins', sans-serif;
 }
 h1 {
-    color: blue;
+    color: #F4A261 ;
     font-size: xx-large;
     text-align: center;
+    text-decoration: underline;
 }
 img {
     padding: 10px;
