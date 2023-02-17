@@ -83,7 +83,7 @@ export function drawTiles(game){
         for(i = 0; i < 20;i++ ){
                 for(j = 0; j < 10;j++ ){
                         
-                        let tempi = 20 - i;
+                        let tempi = 19 - i;
                         let tempj =  j;
 
                         let temp = game.getTileAtPosition(tempj, tempi);

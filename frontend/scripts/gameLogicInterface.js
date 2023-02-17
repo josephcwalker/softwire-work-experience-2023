@@ -74,7 +74,7 @@ function getRandomColour() {
 	return options[Math.floor(Math.random() * options.length)];
 }
 
-function rotateMatrix90DegreesClockwise(matrix) {
+function rotateMatrix90DegreesClockwise(source) {
 	// get the dimensions of the source matrix
 	const M = source.length;
 	const N = source[0].length;
@@ -96,9 +96,18 @@ function rotateMatrix90DegreesClockwise(matrix) {
 	return destination;
 }
 
+function create2DArray(width, height) {
+	let arr = new Array(height);
+	for (let i = 0; i < height; i++) {
+		arr[i] = new Array(width);
+	}
+
+	return arr;
+}
+
 export const emptyGameState = {
 	// A 10x20 array full of null values
-	playfield: new Array(HEIGHT).fill(new Array(WIDTH).fill(null)),
+	playfield: create2DArray(WIDTH, HEIGHT),
 	score: 0,
 	tetrisesMade: 0,
 	tetrominoesDropped: 0,
@@ -133,7 +142,7 @@ export default function createGame(initialGameState = emptyGameState) {
 		isStatePossible: function(newState) {
 			for (let i = 0; i < newState.tiles[0].length; i++) {
 				for (let j = 0; j < newState.tiles.length; j++) {
-					if (newState.tiles[j][i] == null) { continue; }
+					if (newState.tiles[j][i] == 0) { continue; }
 
 					let gridCoords = {
 						x: newState.position.x + i,
@@ -159,22 +168,21 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Progress the game forward one timestep
 		 */
 		gameTick: function() {
-			let tempActive = Object.assign({}, this.gameState.activeTetromino);
+			let tempActive = JSON.parse(JSON.stringify(this.gameState.activeTetromino));
 			tempActive.position.y = tempActive.position.y - 1
-			if (this.gameState.isStatePossible(tempActive) === true){
-				this.gameState.activeTetromino.position.y = this.gameState.activeTetromino.position.y - 1
+			if (this.isStatePossible(tempActive) === true){
+				this.gameState.activeTetromino.position.y -= 1
 			} else {
-				for (let i = 0; i < newState.tiles[0].length; i++) {
-					for (let j = 0; j < newState.tiles.length; j++) {
-						if (newState.tiles[j][i] == null) { continue; }
+				for (let i = 0; i < this.gameState.activeTetromino.tiles[0].length; i++) {
+					for (let j = 0; j < this.gameState.activeTetromino.tiles.length; j++) {
+						if (this.gameState.activeTetromino.tiles[j][i] == 0) { continue; }
 	
 						let gridCoords = {
-							x: newState.position.x + i,
-							y: newState.position.y - j // Playfield has origin bottom-left, tiles has origin top-left
+							x: this.gameState.activeTetromino.position.x + i,
+							y: this.gameState.activeTetromino.position.y - j // Playfield has origin bottom-left, tiles has origin top-left
 						};
 						
-						this.gameState.playfield[gridCoords.y][gridCoords.x] = this.gameState.activeTetromino.tiles[j][i]
-						
+						this.gameState.playfield[gridCoords.y][gridCoords.x] = this.gameState.activeTetromino.colour;
 					}
 				}
 				this.gameState.activeTetromino = {
@@ -352,7 +360,7 @@ export default function createGame(initialGameState = emptyGameState) {
 			for (let tempY = 0; tempY < 50;){
 			let tempActive = Object.assign({}, this.gameState.activeTetromino);
 			tempActive.position.y = tempActive.position.y - 1
-			if (this.gameState.isStatePossible(tempActive) === true){
+			if (this.isStatePossible(tempActive) === true){
 				this.gameState.activeTetromino.position.y = this.gameState.activeTetromino.position.y - 1
 			} else {
 				for (let i = 0; i < newState.tiles[0].length; i++) {
