@@ -99,7 +99,7 @@ function rotateMatrix90DegreesClockwise(source) {
 function create2DArray(width, height) {
 	let arr = new Array(height);
 	for (let i = 0; i < height; i++) {
-		arr[i] = new Array(width);
+		arr[i] = new Array(width).fill(null);
 	}
 
 	return arr;
@@ -111,7 +111,6 @@ export const emptyGameState = {
 	score: 0,
 	tetrisesMade: 0,
 	tetrominoesDropped: 0,
-	tempStopper: 0,
 	upcomingTetrominoes: Array.from({length: 3}, getRandomTetromino),
 	heldTetromino: null,
 	isGameOver: false,
@@ -170,11 +169,6 @@ export default function createGame(initialGameState = emptyGameState) {
 		 * Progress the game forward one timestep
 		 */
 		gameTick: function() {
-			for (;this.gameState.tempStopper < 1;){
-				this.gameState.score = this.gameState.score - 800
-				this.gameState.tempStopper = this.gameState.tempStopper + 1
-			}
-			
 			let tempActive = JSON.parse(JSON.stringify(this.gameState.activeTetromino));
 			tempActive.position.y = tempActive.position.y - 1
 			if (this.isStatePossible(tempActive) === true){
@@ -405,8 +399,9 @@ export default function createGame(initialGameState = emptyGameState) {
 						},
 						colour: getRandomColour()
 					}
-	
+
 					tempY = 51;
+
 					this.gameState.isGameOver = !this.isStatePossible(this.gameState.activeTetromino);
 				}
 				let scoreCount = 0
@@ -427,7 +422,11 @@ export default function createGame(initialGameState = emptyGameState) {
 				} else if (scoreCount >= 4){
 					this.gameState.score = this.gameState.score + 800
 				}
-		}
+
+				if (scoreCount >= 1) {
+					this.scoreChangedCallback(this.gameState.score);
+				}
+			}
 		},
 
 		/**
