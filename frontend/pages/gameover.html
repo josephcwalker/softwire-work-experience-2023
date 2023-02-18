@@ -8,20 +8,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="gameover.css">
-    <!-- <script>
-        const params = new Proxy(new URLSearchParams(window.location.search), {
-            get: (searchParams, prop) => searchParams.get(prop),
-        });
-        const body = {
-            "name": "username",
-            "score": parseInt(params.score)
-        }
-        console.log(body);
-        fetch('http://localhost:3000/newscore', {
-            method: 'POST',
-            body: JSON.stringify(body)
-        }).catch(e => console.log(e));
-    </script> -->
+    <script>
+		function getUsername() {
+			return document.getElementById('username-field').value;
+		}
+		function uploadScore() {
+			const params = new Proxy(new URLSearchParams(window.location.search), {
+				get: (searchParams, prop) => searchParams.get(prop),
+			});
+			const body = {
+				"name": getUsername(),
+				"score": parseInt(params.score)
+			}
+			fetch('http://localhost:3000/newscore', {
+				method: 'POST',
+				body: JSON.stringify(body),
+				headers: {
+					'Content-Type': 'application/json',
+					'Accept': 'application/json'
+				}
+			}).catch(e => console.log(e));
+		}
+
+		function hideFields() {
+			document.getElementById('save-score-field').style.display = "none";
+			document.getElementById('saved-score-confirmation').style.display = "block";
+		}
+    </script>
     
     <title>GAMEOVER</title>
 </head>
@@ -30,6 +43,11 @@
         GAME OVER...
     </h1>
     <img class="game-over" src="game-over.jpg">
+	<div id='save-score-field'>
+		<input id='username-field' type='text' placeholder='Enter Username' />
+		<button onclick='uploadScore(); hideFields()'>Save</button>
+	</div>
+	<h2 id='saved-score-confirmation' style='display: none;'>Score Saved</h2>
     <p>
         You tried your best if you would like to play again click the button below or if no then check out the leader board
     </p>
