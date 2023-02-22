@@ -57,7 +57,7 @@ document.addEventListener('keydown', function(event){
 function checkGameOver(){
     let check =  game.isGameOver();
     if (check){
-        location.replace(`http://localhost:8080/pages/gameover.html?score=${game.getScore()}`)
+        window.location.href = `/pages/gameover.html?score=${game.getScore()}`;
 }
 }
 

@@ -1,5 +1,7 @@
 async function getUsers() {
-    const response = await fetch('http://localhost:3000/scores');
+    let backendUrl = new URL(window.location);
+    backendUrl.port = 3000;
+    const response = await fetch(`${backendUrl.origin}/scores`);
     const json = await response.json();
     return json.data
 
